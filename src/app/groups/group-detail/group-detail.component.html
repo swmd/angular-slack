@@ -1,0 +1,19 @@
+<mdc-card fxFill>
+  <mdc-card-primary>
+    <mdc-card-title>{{ group?.name }}</mdc-card-title>
+    <h2 mdc-card-subtitle>{{ group?.tags?.sort().join(", ")}}</h2>
+  </mdc-card-primary>
+  <mdc-card-media class="chat-content">
+    <mdc-card fxFill>
+      <mdc-card-primary>
+        <mdc-card-title [large]="false">Messages</mdc-card-title>
+      </mdc-card-primary>
+      <mdc-card-media class="chat-content">
+        <app-chats-list [groupId]="group?.id" appScrollableList appInfiniteScrollUp [loadNewObservable]="getRefreshObservable()" [scrollPercentage]="40"></app-chats-list>
+        <app-chat-send [groupId]="group?.id"></app-chat-send>
+      </mdc-card-media>
+    </mdc-card>
+  </mdc-card-media>
+</mdc-card>
+<app-group-delete [id]="group?.id"></app-group-delete>
+<app-group-related [id]="group?.id"></app-group-related>

@@ -1,0 +1,9 @@
+<app-drawer-temporary *ngIf="!showMinimalLayout"></app-drawer-temporary>
+<app-toolbar *ngIf="!showMinimalLayout"></app-toolbar>
+<div fxLayout="row">
+  <app-drawer-permanent *ngIf="!showMinimalLayout && media.isActive('gt-sm')"></app-drawer-permanent>
+
+  <div class="mdc-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

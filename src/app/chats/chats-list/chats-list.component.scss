@@ -1,0 +1,38 @@
+.chat-list {
+  flex-direction: column-reverse;
+  display: flex;
+  padding-top: 0;
+  min-width: 0;
+  mdc-list-item {
+    flex-shrink: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: auto;
+    margin-top: 10px;
+    .message-detail {
+      height: auto;
+      width: auto;
+    }
+    .message-start-detail {
+      @extend .message-detail;
+      margin-right: 10px;
+    }
+    .message-end-detail {
+      @extend .message-detail;
+      button {
+        min-width: unset;
+        padding: unset;
+      }
+    }
+    .message-text {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      word-wrap: break-word;
+      white-space: initial;
+    }
+    .message-wrapper {
+      overflow-x: hidden;
+    }
+  }
+}

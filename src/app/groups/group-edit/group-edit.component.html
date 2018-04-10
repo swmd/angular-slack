@@ -1,0 +1,22 @@
+<mdc-dialog>
+  <mdc-dialog-header>
+    <mdc-dialog-header-title>
+      {{ isNew ? 'New' : 'Edit' }} group
+    </mdc-dialog-header-title>
+  </mdc-dialog-header>
+  <mdc-dialog-body>
+    <form id="groupForm" [formGroup]="groupForm" (ngSubmit)="onSubmit()" fxFlex fxLayout="column">
+      <mdc-text-field fxFlex placeholder="Name" label="Name" required="true" formControlName="name" type="text" [(ngModel)]="group.name"></mdc-text-field>
+      <p mdc-text-field-helper-text [validation]="true" [persistent]="false">Name is required</p>
+      <label for="tags" mdc-typography-caption class="tags-label">
+        Tags
+      </label>
+      <select2 [data]="tags" [options]="options" [value]="tagsValue" width="100%" (valueChanged)="tagsChanged($event)"></select2>
+    </form>
+  </mdc-dialog-body>
+  <mdc-dialog-footer>
+    <button type="button" mdc-dialog-button cancel="true">Cancel</button>
+    <button type="submit" form="groupForm" mdc-dialog-button [disabled]="!groupForm.valid || submitInProgress">Save</button>
+  </mdc-dialog-footer>
+  <mdc-linear-progress *ngIf="submitInProgress" [indeterminate]="true"></mdc-linear-progress>
+</mdc-dialog>

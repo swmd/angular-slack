@@ -1,0 +1,26 @@
+<mdc-list *ngIf="messages && messages.length > 0" [twoLine]="true" [disableRipple]="true" class="chat-list" appScrollDown
+  [elements]="messages" [scrollOnChange]="false" [scrollOnLoad]="hasRemaining">
+  <mdc-list-item *ngFor="let chatMessage of messages">
+    <div mdc-list-item-start class="message-start-detail">
+      <small>{{ chatMessage.sentAt | date:'dd/MM/yyyy' }}
+        <br>{{ chatMessage.sentAt | date:'HH:mm' }}</small>
+    </div>
+    <mdc-list-item-text class="message-wrapper">
+      <span *ngIf="chatMessage.from.id === currentUserId" class="message-name">Me</span>
+      <span *ngIf="chatMessage.from.id !== currentUserId" class="message-name">{{ chatMessage.from.nickname }}</span>
+
+      <mdc-list-item-secondary class="message-text">{{ chatMessage.message }}</mdc-list-item-secondary>
+    </mdc-list-item-text>
+
+    <div mdc-list-item-end *ngIf="chatMessage.from.id === currentUserId" class="message-end-detail">
+      <button type="button" mdc-button (click)="editMessage(chatMessage)">
+        <mdc-icon>edit</mdc-icon>
+      </button>
+      <button type="button" mdc-button (click)="deleteMessage(chatMessage)">
+        <mdc-icon>delete_forever</mdc-icon>
+      </button>
+    </div>
+  </mdc-list-item>
+</mdc-list>
+<app-chat-delete [groupId]="groupId"></app-chat-delete>
+<app-chat-edit [groupId]="groupId"></app-chat-edit>

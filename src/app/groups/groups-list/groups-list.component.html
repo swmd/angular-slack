@@ -1,0 +1,18 @@
+<div fxLayout="column" class="list-container" fxFill>
+  <mdc-list *ngIf="groups && groups.length > 0" twoLine="true" border="true" appScrollableList>
+    <mdc-list-item *ngFor="let group of groups" [routerLink]="group.id" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+      <mdc-list-item-text>
+        {{ group.name}}
+        <mdc-list-item-secondary>
+          {{ group.tags?.sort().join(", ")}}
+        </mdc-list-item-secondary>
+      </mdc-list-item-text>
+      <small mdc-list-item-end class="message-end-detail">
+        {{ group.updatedAt | date:'dd/MM/yyyy HH:mm'}}
+      </small>
+    </mdc-list-item>
+  </mdc-list>
+  <button type="button" (click)="createNewGroup()" mdc-fab class="add-group-fab">
+    <mdc-icon>add</mdc-icon>
+  </button>
+</div>

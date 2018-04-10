@@ -1,0 +1,15 @@
+<div fxLayout="column" class="list-container" fxFill>
+  <mdc-list *ngIf="users && users.length > 0" twoLine="true" border="true" appScrollableList>
+    <mdc-list-item *ngFor="let user of users" [routerLink]="user.id" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+      <mdc-list-item-text>
+        {{ user.nickname}}
+        <mdc-list-item-secondary>
+          {{ user.email }}
+        </mdc-list-item-secondary>
+      </mdc-list-item-text>
+    </mdc-list-item>
+  </mdc-list>
+  <button type="button" (click)="createNewUser()" mdc-fab class="add-user-fab">
+    <mdc-icon>add</mdc-icon>
+  </button>
+</div>
