@@ -123,7 +123,7 @@ export class UserEditComponent extends BaseComponent implements OnInit, AfterVie
       this.user = user;
 
       this.userForm.setValue({
-        nickname: this.user.nickname,
+        username: this.user.username,
         email: this.user.email,
         password: ''
       });
@@ -135,7 +135,7 @@ export class UserEditComponent extends BaseComponent implements OnInit, AfterVie
    */
   private initForm() {
     this.userForm = new FormGroup({
-      nickname: new FormControl('', Validators.required),
+      username: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl(''),
     });

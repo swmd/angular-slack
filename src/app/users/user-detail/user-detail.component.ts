@@ -65,7 +65,7 @@ export class UserDetailComponent extends BaseComponent implements OnInit, OnDest
     this.subscription = this.userService.get(this.id).subscribe((user) => {
       this.user = user;
 
-      this.toolbarService.setTitle(this.user.nickname);
+      this.toolbarService.setTitle(this.user.username);
     }, (error) => {
       console.error('User was not found!', error);
       this.router.navigate(['../'], { relativeTo: this.route });

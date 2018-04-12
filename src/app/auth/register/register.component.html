@@ -8,14 +8,14 @@
       </mdc-card-primary>
       <mdc-card-media>
         <form id="registerForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-          <mdc-text-field label="Nickname" [required]="true" fullwidth="true" formControlName="nickname" type="text" [(ngModel)]="user.nickname"></mdc-text-field>
-          <p mdc-text-field-helper-text [validation]="true" [persistent]="false">Nickname is required</p>
+          <mdc-text-field label="username" [required]="true" fullwidth="true" formControlName="username" type="text" [(ngModel)]="user.username"></mdc-text-field>
+          <p mdc-text-field-helper-text [validation]="true" [persistent]="false">username is required</p>
           <mdc-text-field label="Email" [required]="true" fullwidth="true" formControlName="email" type="email" [(ngModel)]="user.email"></mdc-text-field>
           <p mdc-text-field-helper-text [validation]="true" [persistent]="false">An valid email is required</p>
           <mdc-text-field label="Password" [required]="true" fullwidth="true" formControlName="password" type="password" [(ngModel)]="user.password"></mdc-text-field>
           <p mdc-text-field-helper-text [validation]="true" [persistent]="false">Password is required</p>
-          <mdc-text-field label="Confirm Password" [required]="true" fullwidth="true" formControlName="confirmPassword" type="password" [(ngModel)]="user.confirmPassword"></mdc-text-field>
-          <p mdc-text-field-helper-text [validation]="true" [persistent]="false">Password do not match</p>
+          <mdc-text-field label="Confirm Password" [required]="true" fullwidth="true" formControlName="confirmPassword" type="password" [(ngModel)]="user.confirmPassword" aria-controls="password-confirm-helper-text"></mdc-text-field>
+          <p mdc-text-field-helper-text id="password-confirm-helper-text" [validation]="true" [persistent]="false">Password do not match</p>
         </form>
       </mdc-card-media>
       <mdc-card-actions>

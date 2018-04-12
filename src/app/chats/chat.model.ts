@@ -21,9 +21,9 @@ export class ChatMessage extends BaseModel {
    */
   from: {
     /**
-     * The nickname of the user
+     * The username of the user
      */
-    nickname: string;
+    username: string;
 
     /**
      * The id of the user

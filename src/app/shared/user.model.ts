@@ -15,9 +15,14 @@ export class User extends BaseModel {
   public password?: string;
 
   /**
-   * The nickname of the user
+   * The confirmPassword of the user, will only be sent never received!
    */
-  public nickname: string;
+  public confirmPassword?: string;
+
+  /**
+   * The username of the user
+   */
+  public username: string;
 
   constructor() {
     super();

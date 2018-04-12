@@ -113,7 +113,7 @@ export class AuthService implements IAuthService {
 
     const user: User = {
       email: parsedToken.email,
-      nickname: parsedToken.nickname,
+      username: parsedToken.username,
       id: parsedToken.id
     };
 

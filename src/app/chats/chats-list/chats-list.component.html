@@ -7,7 +7,7 @@
     </div>
     <mdc-list-item-text class="message-wrapper">
       <span *ngIf="chatMessage.from.id === currentUserId" class="message-name">Me</span>
-      <span *ngIf="chatMessage.from.id !== currentUserId" class="message-name">{{ chatMessage.from.nickname }}</span>
+      <span *ngIf="chatMessage.from.id !== currentUserId" class="message-name">{{ chatMessage.from.username }}</span>
 
       <mdc-list-item-secondary class="message-text">{{ chatMessage.message }}</mdc-list-item-secondary>
     </mdc-list-item-text>
