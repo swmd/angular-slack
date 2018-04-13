@@ -32,3 +32,12 @@ Make sure you have Node.js installed.
     npm start
     
 Your app should now be running on localhost:4200.
+
+Screenshots
+===========
+
+### Login
+![Login](./screenshots/login.png)
+
+### Register
+![Register](./screenshots/register.png)
