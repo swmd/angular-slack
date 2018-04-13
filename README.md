@@ -1,16 +1,11 @@
-Angular 4 Slack Clone
+Angular 5 Slack Clone
 =======================
-
-Angular application with support for 
-* Users (CRUD)
-* Groups (CRUD)
-* Messages in groups
-
 
 Requirements
 ============
 
 * Node >= 6.9.0
+* MongoDB
 
 Installation
 ============
@@ -21,6 +16,7 @@ Usage
 =======
     $ npm run
 
+    dev:server - Run the server app
     build - Builds the project
     build.prod - Builds the project in production
     build.prod.aot - Builds the project in production with Ahead-of-Time (AOT) compilation
