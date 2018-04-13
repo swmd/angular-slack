@@ -25,7 +25,7 @@ export class AuthService implements IAuthService {
       return Observable.of(true);
     }
 
-    return this.http.post(`${environment.apiUrl}/users/login`, user, this.getRequestOptions())
+    return this.http.post(`${environment.apiUrl}/auth/login`, user, this.getRequestOptions())
       .map(r => r.json())
       .map(body => {
         // login successful if there's a jwt token in the response
@@ -54,7 +54,12 @@ export class AuthService implements IAuthService {
       return Observable.of(true);
     }
 
-    return this.http.post(`${environment.apiUrl}/users/register`, user, this.getRequestOptions())
+    const newUser = {
+      ...user
+    };
+    delete newUser.confirmPassword;
+
+    return this.http.post(`${environment.apiUrl}/auth/register`, newUser, this.getRequestOptions())
       .map(r => r.json())
       .map(body => {
         // register successful if there's a jwt token in the response

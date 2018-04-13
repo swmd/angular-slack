@@ -7,12 +7,12 @@ import config from '../core/config/config.dev';
 
 const loginSchema = Joi.object().keys({
   email: Joi.string().email().required(),
-  password: Joi.string().max(255).min(8),
+  password: Joi.string().max(255).min(4),
 });
 
 const userSchema = Joi.object().keys({
   email: Joi.string().email().required(),
-  password: Joi.string().max(255).min(8),
+  password: Joi.string().max(255).min(4),
   username: Joi.string().max(255).required(),
 });
 
