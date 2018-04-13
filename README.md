@@ -37,7 +37,7 @@ Screenshots
 ===========
 
 ### Login
-![Login](./screenshots/login.png)
+![Login](./screenshots/ss_login.png)
 
 ### Register
-![Register](./screenshots/register.png)
+![Register](./screenshots/ss_register.png)
