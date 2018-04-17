@@ -1,0 +1,36 @@
+<div fxLayout="row">
+  <div fxFlex="0%" fxFlex.gt-sm="33" fxHide fxShow.gt-sm="true"></div>
+  <div fxFlex>
+    <br>
+    <mdc-card>
+      <mdc-card-primary>
+        <mdc-card-title [large]="true">Change Password</mdc-card-title>
+      </mdc-card-primary>
+      <mdc-card-media>
+        <form id="settingsForm" [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+          <mdc-text-field label="Old Password" [required]="true" fullwidth="true" formControlName="oldPassword" type="password" [(ngModel)]="passObject.oldPassword"></mdc-text-field>
+          <p mdc-text-field-helper-text [validation]="true" [persistent]="false">Old password is required</p>
+          <mdc-text-field label="New Password" [required]="true" fullwidth="true" formControlName="newPassword" type="password" [(ngModel)]="passObject.newPassword" (change)="onPasswordChange($event)"></mdc-text-field>
+          <p mdc-text-field-helper-text [validation]="true" [persistent]="false">New password is required</p>
+          <p *ngIf="passwordStrength" class="form-error">Password is not strong enough!</p>
+          <ng2-password-strength-bar
+              [passwordToCheck]="passObject.newPassword"
+              [barLabel]="barLabel"
+              [barColors]="myColors">
+          </ng2-password-strength-bar>
+          <mdc-text-field label="Confirm Password" [required]="true" fullwidth="true" formControlName="passwordConfirm" type="password" [(ngModel)]="passObject.passwordConfirm" aria-controls="password-confirm-helper-text"></mdc-text-field>
+          <p mdc-text-field-helper-text id="password-confirm-helper-text" [validation]="true" [persistent]="false">Password do not match</p>
+        </form>
+      </mdc-card-media>
+      <p *ngIf="error">
+        {{error}}
+      </p>
+      <mdc-card-actions>
+        <button type="submit" form="settingsForm" mdc-card-button [disabled]="!settingsForm.valid || submitInProgress">Change Password</button>
+      </mdc-card-actions>
+      <mdc-linear-progress *ngIf="submitInProgress" [indeterminate]="true"></mdc-linear-progress>
+    </mdc-card>
+    <br>
+  </div>
+  <div fxFlex="0%" fxFlex.gt-sm="33" fxHide fxShow.gt-sm="true"></div>
+</div>

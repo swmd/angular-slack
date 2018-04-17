@@ -23,6 +23,12 @@ export class DrawerListComponent {
       route: '/users',
       icon: 'person',
       desc: 'An overview of all the users in this application'
+    },
+    {
+      name: 'Settings',
+      route: '/settings',
+      icon: 'settings',
+      desc: 'User settings'
     }
   ];
 }

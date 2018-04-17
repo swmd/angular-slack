@@ -17,6 +17,8 @@ export interface IAuthService {
    */
   register(user: User): Observable<boolean>;
 
+  changePassword(passwordObject: any): Observable<boolean>;
+
   /**
    * Logs the user out
    */

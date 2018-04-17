@@ -26,9 +26,12 @@ export class RegisterComponent extends BaseComponent implements OnInit {
 	 */
 	public user: User;
 
+	public error: string;
+
 	constructor(@Inject(AUTH_SERVICE) private authService: IAuthService, private router: Router) {
 		super();
 		this.user = new User();
+		this.error = "";
 	}
 
 	ngOnInit(): void {

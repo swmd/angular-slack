@@ -79,6 +79,16 @@ export class AuthService implements IAuthService {
       });
   }
 
+  public changePassword(passwordObject: any): Observable<boolean> {
+    console.log('submit: ', passwordObject);
+    return this.http.post('http://192.168.0.27:8080/changepwd', passwordObject, this.getRequestOptions())
+      .map(r => r.json())
+      .map(body => {
+        console.log(body);
+        return true;
+      });
+  }
+
 
   /**
    * Logs the user out
