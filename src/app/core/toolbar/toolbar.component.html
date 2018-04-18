@@ -1,8 +1,7 @@
 <mdc-toolbar fixed="true">
   <mdc-toolbar-row>
     <mdc-toolbar-section alignStart="true">
-      <button type="button" material-icon mdc-toolbar-menu-icon mdc-ripple (click)="toggleDrawer();" fxShow fxHide.gt-sm="true">menu</button>
-      <button type="button" material-icon mdc-toolbar-menu-icon mdc-ripple (click)="logout();" fxHide fxShow.gt-sm="true" title="Sign out">lock</button>
+      <button type="button" material-icon mdc-toolbar-menu-icon mdc-ripple (click)="toggleDrawer();" fxShow fxShow.gt-sm="true">menu</button>
       <mdc-toolbar-title>
         <span *ngIf="title">{{ title }}</span>
         <span *ngIf="!title">Slack</span>
@@ -17,6 +16,7 @@
           <div mdc-toolbar-icon material-icon [title]="item.title">{{ item.icon }}</div>
         </a>
       </div>
+      <button type="button" material-icon mdc-toolbar-menu-icon mdc-ripple (click)="logout();" fxHide fxShow.gt-sm="true" title="Sign out">lock</button>
     </mdc-toolbar-section>
   </mdc-toolbar-row>
 </mdc-toolbar>

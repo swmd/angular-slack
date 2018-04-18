@@ -131,7 +131,6 @@ export class AuthService implements IAuthService {
       username: parsedToken.username,
       id: parsedToken.id
     };
-
     this.user = user;
   }
 

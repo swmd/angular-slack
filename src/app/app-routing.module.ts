@@ -5,7 +5,7 @@ import { AuthGuard } from './auth/auth-guard.service';
 const routes: Routes = [
   {
     path: '**',
-    redirectTo: '/dashboard'
+    redirectTo: '/chats'
   }
 ];
 
