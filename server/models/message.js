@@ -6,7 +6,7 @@ const MessageSchema = mongoose.Schema({
     required: true,
     ref: 'User',
   },
-  name: {
+  username: {
     type: String,
     required: true,
   },
@@ -15,6 +15,10 @@ const MessageSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  group: {
+    type: String,
+    required: true
+  }
 }, { collection: 'messages' });
 
 if (!MessageSchema.options.toObject) {

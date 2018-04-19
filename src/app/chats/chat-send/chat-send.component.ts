@@ -42,11 +42,15 @@ export class ChatSendComponent extends BaseComponent implements OnInit {
       return;
     }
 
-    const chatMessage = new ChatMessage();
-    chatMessage.message = this.message;
+    // const chatMessage = new ChatMessage();
+    // chatMessage.message = this.message;
 
-    this.chatService.create(this.groupId, chatMessage).subscribe(() => {
-      this.message = '';
+    // this.chatService.create(this.groupId, chatMessage).subscribe(() => {
+    //   this.message = '';
+    // });
+    this.chatService.sendMessage({
+      groupId: this.groupId,
+      text: this.message
     });
   }
 

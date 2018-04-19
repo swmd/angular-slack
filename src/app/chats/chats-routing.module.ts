@@ -11,10 +11,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: '',
-        component: ChatsComponent
-      },
-      {
         path: ':id',
         component: ChatsComponent
       }

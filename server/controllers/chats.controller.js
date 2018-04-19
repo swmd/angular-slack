@@ -4,6 +4,7 @@ import logger from '../core/logger/app-logger';
 const controller = {};
 
 controller.getLast7Days = async (req, res) => {
+  console.log('got request')
   try {
     const today = new Date();
     const date = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);

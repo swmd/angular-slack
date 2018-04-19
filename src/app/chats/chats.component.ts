@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { BaseComponent } from '../shared/base/basecomponent.class';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Http, RequestOptions } from '@angular/http';
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
 // import { Chat } from './chat.model';
 import { ChatService } from './chat.service';
 import { DrawerService } from '../core/drawer/drawer.service';
@@ -19,17 +21,27 @@ export class ChatsComponent extends BaseComponent implements OnInit, OnDestroy {
   public chatListComponent: ChatsListComponent;
 
   // public chat: Chat;
-  private id: string;
+  private groupId: string;
 
-  constructor(private route: ActivatedRoute, private router: Router, private chatService: ChatService, private drawerService: DrawerService) {
+  constructor(private route: ActivatedRoute, private router: Router, private chatService: ChatService, private drawerService: DrawerService, private http: Http) {
     super();
   }
 
   ngOnInit() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.chatService  = new ChatService({
+        query: `token=${token}`
+      }, new AuthHttp(new AuthConfig({
+        tokenName: 'token',
+        tokenGetter: (() => token),
+        globalHeaders: [{'Content-Type':'application/json'}],
+      }), this.http));
+    }
+
     this.subscription = this.route.params
       .subscribe((params: Params) => {
-        this.id = params['id'] ? params['id'] : 'general';
-        // this.loadChat();
+        this.groupId = params['id'] ? params['id'] : 'general';
       });
 
     const generalChannel: DrawerItem = {

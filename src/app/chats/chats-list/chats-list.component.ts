@@ -72,25 +72,33 @@ export class ChatsListComponent extends BaseComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.subscription = this.chatService.onMessageSent.subscribe((sentMessage: ChatMessage) => {
-      this.messages.unshift(sentMessage);
-    });
+    // this.subscription = this.chatService.onMessageSent.subscribe((sentMessage: ChatMessage) => {
+    //   this.messages.unshift(sentMessage);
+    // });
 
-    this.subscription = this.chatService.onMessageEdited.subscribe((editedMessage: ChatMessage) => {
-      const messageIndex = this.messages.findIndex(x => x.id === editedMessage.id);
+    // this.subscription = this.chatService.onMessageEdited.subscribe((editedMessage: ChatMessage) => {
+    //   const messageIndex = this.messages.findIndex(x => x.id === editedMessage.id);
 
-      if (messageIndex >= 0) {
-        this.messages[messageIndex] = editedMessage;
-      }
-    });
+    //   if (messageIndex >= 0) {
+    //     this.messages[messageIndex] = editedMessage;
+    //   }
+    // });
 
-    this.subscription = this.chatService.onMessageDeleted.subscribe((deletedId: string) => {
-      const messageIndex = this.messages.findIndex(x => x.id === deletedId);
+    // this.subscription = this.chatService.onMessageDeleted.subscribe((deletedId: string) => {
+    //   const messageIndex = this.messages.findIndex(x => x.id === deletedId);
 
-      if (messageIndex >= 0) {
-        this.messages.splice(messageIndex, 1);
-      }
-    });
+    //   if (messageIndex >= 0) {
+    //     this.messages.splice(messageIndex, 1);
+    //   }
+    // });
+    // this.loadMessages();
+
+    this.chatService
+        .getMessage()
+        .subscribe(message => {
+          console.log('message received: ', message);
+          this.messages.push(message);
+        });
   }
 
   /**
@@ -113,7 +121,7 @@ export class ChatsListComponent extends BaseComponent implements OnInit {
    * Gets the observable to use to refresh messages
    */
   public getRefreshObservable() {
-    return this.loadMessages();
+    // return this.loadMessages();
   }
 
   /**
@@ -131,30 +139,27 @@ export class ChatsListComponent extends BaseComponent implements OnInit {
    * Loads the messages
    */
   private loadMessages() {
-    if (!this.hasRemaining) {
-      return Observable.empty();
-    }
+    return this.chatService.getAll().do((messages) => {
+      console.log('fetch messages: messages');
+      // this.messages.push(...messages);
 
-    return this.chatService.getAll(this._groupId, this.lastShownDate).do((messages) => {
-      this.messages.push(...messages);
+      // if (messages.length === 0) {
+      //   // No remaining anymore
+      //   this.hasRemaining = false;
+      // }
 
-      if (messages.length === 0) {
-        // No remaining anymore
-        this.hasRemaining = false;
-      }
+      // const dates = messages.map(m => new Date(m.sentAt));
+      // const earliest = new Date(Math.min.apply(null, dates));
 
-      const dates = messages.map(m => new Date(m.sentAt));
-      const earliest = new Date(Math.min.apply(null, dates));
+      // if (!isNaN(earliest.getTime())) {
+      //   this.lastShownDate = earliest;
+      // }
 
-      if (!isNaN(earliest.getTime())) {
-        this.lastShownDate = earliest;
-      }
-
-      setTimeout(() => {
-        if (this.mdcList) {
-          this.mdcList.ngAfterContentInit();
-        }
-      }, 100);
+      // setTimeout(() => {
+      //   if (this.mdcList) {
+      //     this.mdcList.ngAfterContentInit();
+      //   }
+      // }, 100);
     });
   }
 }

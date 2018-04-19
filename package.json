@@ -46,6 +46,7 @@
     "lodash": "^4.15.0",
     "mongoose": "^5.0.11",
     "morgan": "^1.8.2",
+    "ng-socket-io": "^0.2.4",
     "ng2-password-strength-bar": "^1.2.0",
     "ng2-select2": "^1.0.0-beta.10",
     "nodemailer": "^4.6.4",
