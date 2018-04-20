@@ -20,7 +20,8 @@ const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
-    tokenName: 'token',
+    headerName: 'x-access-token',
+    noTokenScheme: true,
     tokenGetter: (() => localStorage.getItem('token')),
     globalHeaders: [{'Content-Type':'application/json'}],
   }), http, options);
@@ -37,7 +38,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   imports: [
     CommonModule,
     LayoutModule,
-    SocketIoModule.forRoot(config),
+    SocketIoModule,
     ChatsRoutingModule,
     FormsModule,
     ReactiveFormsModule,

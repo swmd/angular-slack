@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild, Inject, ChangeDetectorRef, OnInit } from '@angular/core';
 import { BaseComponent } from '../../shared/base/basecomponent.class';
-import { ChatMessage } from '../chat.model';
+// import { ChatMessage } from '../chat.model';
 import { ChatService } from '../chat.service';
 import { MdcList } from '@angular-mdc/web';
 import { ChatDeleteComponent } from '../chat-delete/chat-delete.component';
@@ -45,7 +45,7 @@ export class ChatsListComponent extends BaseComponent implements OnInit {
   /**
    * The currently displayed messages
    */
-  public messages: ChatMessage[];
+  public messages: Array<any>;
 
   /**
    * The current user id
@@ -72,27 +72,6 @@ export class ChatsListComponent extends BaseComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    // this.subscription = this.chatService.onMessageSent.subscribe((sentMessage: ChatMessage) => {
-    //   this.messages.unshift(sentMessage);
-    // });
-
-    // this.subscription = this.chatService.onMessageEdited.subscribe((editedMessage: ChatMessage) => {
-    //   const messageIndex = this.messages.findIndex(x => x.id === editedMessage.id);
-
-    //   if (messageIndex >= 0) {
-    //     this.messages[messageIndex] = editedMessage;
-    //   }
-    // });
-
-    // this.subscription = this.chatService.onMessageDeleted.subscribe((deletedId: string) => {
-    //   const messageIndex = this.messages.findIndex(x => x.id === deletedId);
-
-    //   if (messageIndex >= 0) {
-    //     this.messages.splice(messageIndex, 1);
-    //   }
-    // });
-    // this.loadMessages();
-
     this.chatService
         .getMessage()
         .subscribe(message => {
@@ -105,7 +84,7 @@ export class ChatsListComponent extends BaseComponent implements OnInit {
    * Shows the edit dialog
    * @param chatMessage The message to edit
    */
-  public editMessage(chatMessage: ChatMessage) {
+  public editMessage(chatMessage) {
     this.chatEditComponent.showDialog(chatMessage);
   }
 
@@ -113,7 +92,7 @@ export class ChatsListComponent extends BaseComponent implements OnInit {
    * Shows the delete dialog
    * @param chatMessage The message to delete
    */
-  public deleteMessage(chatMessage: ChatMessage) {
+  public deleteMessage(chatMessage) {
     this.chatDeleteComponent.showDialog(chatMessage.id);
   }
 
@@ -140,26 +119,7 @@ export class ChatsListComponent extends BaseComponent implements OnInit {
    */
   private loadMessages() {
     return this.chatService.getAll().do((messages) => {
-      console.log('fetch messages: messages');
-      // this.messages.push(...messages);
-
-      // if (messages.length === 0) {
-      //   // No remaining anymore
-      //   this.hasRemaining = false;
-      // }
-
-      // const dates = messages.map(m => new Date(m.sentAt));
-      // const earliest = new Date(Math.min.apply(null, dates));
-
-      // if (!isNaN(earliest.getTime())) {
-      //   this.lastShownDate = earliest;
-      // }
-
-      // setTimeout(() => {
-      //   if (this.mdcList) {
-      //     this.mdcList.ngAfterContentInit();
-      //   }
-      // }, 100);
+      this.messages = messages;
     });
   }
 }

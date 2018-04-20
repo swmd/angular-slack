@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Injectable, EventEmitter, Inject } from '@angular/core';
 import { AuthHttp } from 'angular2-jwt';
 import { Socket } from 'ng-socket-io';
-import { ChatMessage } from './chat.model';
+// import { ChatMessage } from './chat.model';
 
 @Injectable()
 export class ChatService extends Socket {
@@ -12,7 +12,7 @@ export class ChatService extends Socket {
 	 * Event emitter if a message is edited
 	 * Contains the edited message
 	 */
-	public onMessageEdited: EventEmitter<ChatMessage>;
+	public onMessageEdited: EventEmitter<any>;
 
 	/**
 	 * Event emitter if a message is deleted
@@ -24,10 +24,12 @@ export class ChatService extends Socket {
 	 * Event emitter if a message is sent
 	 * Contains the sent message
 	 */
-	public onMessageSent: EventEmitter<ChatMessage>;
+	public onMessageSent: EventEmitter<any>;
 
 	constructor(@Inject("_OPTIONS_") private options, private authHttp: AuthHttp) {
 		super({url: environment.apiUrl, options});
+		console.log('socket: ', this.ioSocket);
+		this.ioSocket.connect();
 		this.onMessageEdited = new EventEmitter();
 		this.onMessageDeleted = new EventEmitter();
 		this.onMessageSent = new EventEmitter();
@@ -39,8 +41,9 @@ export class ChatService extends Socket {
 	}
 
 	sendMessage(message: any) {
-		this.emit("send", message);
-  }
+		console.log('send msg: ', message)
+		this.ioSocket.emit('send', message);
+  	}
 
 	/**
 	 * Gets all the messages for the specified group
@@ -55,9 +58,8 @@ export class ChatService extends Socket {
 	/**
 	 * Gets a single message
 	 * @param groupId The group id
-	 * @param id The message id
 	 */
-	public get(groupId: string, id: string): Observable<ChatMessage> {
+	public get(groupId: string): Observable<any> {
 		return this.authHttp.get(`${environment.apiUrl}/groups/${groupId}/messages`)
 			.map(r => r.json());
 	}
@@ -78,7 +80,7 @@ export class ChatService extends Socket {
 	 * @param groupId The group id
 	 * @param chatMessage The message to create
 	 */
-	public create(groupId: string, chatMessage: ChatMessage): Observable<ChatMessage> {
+	public create(groupId: string, chatMessage: any): Observable<any> {
 		return this.authHttp.post(`${environment.apiUrl}/groups/${groupId}/messages`, chatMessage)
 			.map(response => response.json())
 			.do((message) => this.onMessageSent.emit(message));
@@ -90,7 +92,7 @@ export class ChatService extends Socket {
 	 * @param id The message id
 	 * @param chatMessage The updated message
 	 */
-	public update(groupId: string, id: string, chatMessage: ChatMessage): Observable<ChatMessage> {
+	public update(groupId: string, id: string, chatMessage: any): Observable<any> {
 		return this.authHttp.put(`${environment.apiUrl}/groups/${groupId}/messages/${id}`, chatMessage)
 			.map(response => response.json())
 			.do((message) => this.onMessageEdited.emit(message));

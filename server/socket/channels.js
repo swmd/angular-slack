@@ -7,6 +7,7 @@ const configureChannels = (socket, user) => {
   });
 
   socket.on('send', (data) => {
+    console.log('emit message: ', data)
     const msg = new Message({
       user: user._id,
       username: user.username,
@@ -19,7 +20,11 @@ const configureChannels = (socket, user) => {
     const msgData = {
       msg: {
         ...msg.toObject(),
-        username: user.username,
+        userId: user._id,
+        user: {
+          username: user.username,
+          email: user.email
+        }
       },
     };
 
@@ -28,6 +33,7 @@ const configureChannels = (socket, user) => {
   });
 
   console.log(`[INFO] User ${user._id} connected`);
+
 };
 
 export default configureChannels;

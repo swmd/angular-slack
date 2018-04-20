@@ -2,7 +2,6 @@ import { Component, ViewChild, Input, EventEmitter, Output, OnInit } from '@angu
 import { BaseComponent } from '../../shared/base/basecomponent.class';
 import { MdcDialogComponent } from '@angular-mdc/web';
 import { ChatService } from '../chat.service';
-import { ChatMessage } from '../chat.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -23,7 +22,7 @@ export class ChatEditComponent extends BaseComponent implements OnInit {
   /**
    * The chat message that should be edited
    */
-  public chatMessage: ChatMessage;
+  public chatMessage: any;
 
   /**
    * The message form
@@ -38,7 +37,7 @@ export class ChatEditComponent extends BaseComponent implements OnInit {
   constructor(private chatService: ChatService) {
     super();
 
-    this.chatMessage = new ChatMessage();
+    this.chatMessage = {};
   }
 
   public ngOnInit() {
@@ -48,7 +47,7 @@ export class ChatEditComponent extends BaseComponent implements OnInit {
   /**
    * Shows the edit dialog
    */
-  public showDialog(chatMessage: ChatMessage): void {
+  public showDialog(chatMessage): void {
     this.chatMessage = chatMessage;
     this.messageForm.setValue({
       message: chatMessage.message

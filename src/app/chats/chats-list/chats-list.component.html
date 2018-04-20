@@ -2,17 +2,17 @@
   [elements]="messages" [scrollOnChange]="false" [scrollOnLoad]="hasRemaining">
   <mdc-list-item *ngFor="let chatMessage of messages">
     <div mdc-list-item-start class="message-start-detail">
-      <small>{{ chatMessage.sentAt | date:'dd/MM/yyyy' }}
-        <br>{{ chatMessage.sentAt | date:'HH:mm' }}</small>
+      <small>{{ chatMessage.time | date:'dd/MM/yyyy' }}
+        <br>{{ chatMessage.time | date:'HH:mm' }}</small>
     </div>
     <mdc-list-item-text class="message-wrapper">
-      <span *ngIf="chatMessage.from.id === currentUserId" class="message-name">Me</span>
-      <span *ngIf="chatMessage.from.id !== currentUserId" class="message-name">{{ chatMessage.from.username }}</span>
+      <span *ngIf="chatMessage.userId === currentUserId" class="message-name">Me</span>
+      <span *ngIf="chatMessage.userId !== currentUserId" class="message-name">{{ chatMessage.user.username }}</span>
 
-      <mdc-list-item-secondary class="message-text">{{ chatMessage.message }}</mdc-list-item-secondary>
+      <mdc-list-item-secondary class="message-text">{{ chatMessage.text }}</mdc-list-item-secondary>
     </mdc-list-item-text>
 
-    <div mdc-list-item-end *ngIf="chatMessage.from.id === currentUserId" class="message-end-detail">
+    <div mdc-list-item-end *ngIf="chatMessage.userId === currentUserId" class="message-end-detail">
       <button type="button" mdc-button (click)="editMessage(chatMessage)">
         <mdc-icon>edit</mdc-icon>
       </button>
