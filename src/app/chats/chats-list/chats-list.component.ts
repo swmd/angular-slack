@@ -75,7 +75,6 @@ export class ChatsListComponent extends BaseComponent implements OnInit {
     this.chatService
         .getMessage()
         .subscribe(message => {
-          console.log('message received: ', message);
           this.messages.push(message);
         });
   }

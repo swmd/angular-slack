@@ -5,6 +5,7 @@ import { DrawerService } from '../core/drawer/drawer.service';
 import { DrawerItem } from '../core/drawer/drawer-item.class';
 import { ChatsListComponent } from './chats-list/chats-list.component';
 import { Observable } from 'rxjs/Observable';
+import { ChatService } from './chat.service';
 
 @Component({
   selector: 'app-chats',
@@ -19,7 +20,7 @@ export class ChatsComponent extends BaseComponent implements OnInit, OnDestroy {
   // public chat: Chat;
   private groupId: string;
 
-  constructor(private route: ActivatedRoute, private router: Router, private drawerService: DrawerService) {
+  constructor(private route: ActivatedRoute, private router: Router, private drawerService: DrawerService, private chatService: ChatService) {
     super();
   }
 

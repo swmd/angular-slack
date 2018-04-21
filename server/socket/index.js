@@ -11,7 +11,7 @@ const initSocketIO = (server) => {
 
   io.on('connection', (socket) => {
     const { token } = socket.handshake.query;
-// console.log('connection: ', socket.connected)
+
     jwt.verify(token, config.JWT_SECRET, (err, decoded) => {
       if (err) {
         console.log('Unauthorized user');
@@ -28,13 +28,12 @@ const initSocketIO = (server) => {
       sockets[userId] = socket;
 
       User.findById(userId, (err1, user) => {
-        console.log('found user: ', user)
         if (err1) {
           console.log('Connection error');
           socket.disconnect();
           return;
         }
-// socket.emit('receive', { msg: 'Welcome bro!' });
+
         configureChannels(socket, user);
       });
     });

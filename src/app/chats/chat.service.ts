@@ -27,9 +27,8 @@ export class ChatService extends Socket {
 	public onMessageSent: EventEmitter<any>;
 
 	constructor(@Inject("_OPTIONS_") private options, private authHttp: AuthHttp) {
-		super({url: environment.apiUrl, options});
-		console.log('socket: ', this.ioSocket);
-		this.ioSocket.connect();
+		super({url: environment.hostUrl, options});
+		// this.ioSocket.connect();
 		this.onMessageEdited = new EventEmitter();
 		this.onMessageDeleted = new EventEmitter();
 		this.onMessageSent = new EventEmitter();
@@ -41,7 +40,6 @@ export class ChatService extends Socket {
 	}
 
 	sendMessage(message: any) {
-		console.log('send msg: ', message)
 		this.ioSocket.emit('send', message);
   	}
 

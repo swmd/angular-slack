@@ -7,7 +7,6 @@ const configureChannels = (socket, user) => {
   });
 
   socket.on('send', (data) => {
-    console.log('emit message: ', data)
     const msg = new Message({
       user: user._id,
       username: user.username,

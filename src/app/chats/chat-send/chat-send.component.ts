@@ -46,6 +46,7 @@ export class ChatSendComponent extends BaseComponent implements OnInit {
       groupId: this.groupId,
       text: this.message
     });
+    this.message = '';
   }
 
   /**
