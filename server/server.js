@@ -44,6 +44,6 @@ app.use((err, req, res, next) => {
   }
 });
 
-server.listen(port, () => {
+server.listen(port, '192.168.0.131', () => {
   logger.info('server started - ', port);
 });

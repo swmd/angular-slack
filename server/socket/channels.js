@@ -31,6 +31,11 @@ const configureChannels = (socket, user) => {
     socket.broadcast.emit('receive', msgData);
   });
 
+  socket.on('typing', () => {
+    // socket.emit('onTyping', {msg: { username: user.username, id: user._id}});
+    socket.broadcast.emit('onTyping', {msg: { username: user.username, id: user._id}});
+  });
+
   console.log(`[INFO] User ${user._id} connected`);
 
 };

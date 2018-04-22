@@ -1,6 +1,7 @@
 <div fxLayout="row" fxLayoutAlign=" end">
   <form id="sendMessageForm" fxFlex [formGroup]="sendMessageForm" (ngSubmit)="onSubmit()">
-    <mdc-text-field fxFlex label="Message" formControlName="message" type="text" dense="true" [(ngModel)]="message"></mdc-text-field>
+    <!-- <mdc-text-field fxFlex label="Message" formControlName="message" type="text" dense="true" [(ngModel)]="message" (change)="onTyping($event)"></mdc-text-field> -->
+    <input (keyup)="onTyping($event)" [(ngModel)]="message" type="text" formControlName="message" fxFlex>
   </form>
   <button type="submit" form="sendMessageForm" fxFlex="nogrow" mdc-fab [mini]="true">
     <mdc-icon>send</mdc-icon>

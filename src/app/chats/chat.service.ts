@@ -34,13 +34,22 @@ export class ChatService extends Socket {
 		this.onMessageSent = new EventEmitter();
 	}
 
+	getStatus() {
+		return this.fromEvent<any>("onTyping")
+			.map(data => data.msg);
+	}
+
 	getMessage() {
 		return this.fromEvent<any>("receive")
 			.map(data => data.msg);
 	}
 
 	sendMessage(message: any) {
-		this.ioSocket.emit('send', message);
+		this.emit('send', message);
+  	}
+
+  	sendTypingStatus() {
+  		this.emit('typing');
   	}
 
 	/**

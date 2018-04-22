@@ -34,6 +34,10 @@ export class ChatSendComponent extends BaseComponent implements OnInit {
     this.initForm();
   }
 
+  public onTyping() {
+    this.chatService.sendTypingStatus();
+  }
+
   /**
    * Sends a message
    */

@@ -7,6 +7,7 @@
       <mdc-card-media class="chat-content">
         <app-chats-list [groupId]="groupId" appScrollableList appInfiniteScrollUp [loadNewObservable]="getRefreshObservable()" [scrollPercentage]="40"></app-chats-list>
         <app-chat-send [groupId]="groupId"></app-chat-send>
+        <div class="type-status">{{statusText}}</div>
       </mdc-card-media>
     </mdc-card>
   </mdc-card-media>
